@@ -57,17 +57,31 @@ angular.module('wijnemenjemee')
 
     				preparedData = [];
     				var indexType = data.columns.indexOf('Type');
-    				var indexStation = data.columns.indexOf('Station');
+    				var indexWerk = data.columns.indexOf('Werk');
     				var indexStartdatum = data.columns.indexOf('Startdatum');
     				var indexEinddatum = data.columns.indexOf('Einddatum');
     				//prepare 
+    				// for (var i = 0; i < data.rows.length; i++) {
+    				// 	var index;
+    				// 	var obj = {
+    				// 		label: '',
+    				// 		times: [{
+    				// 			//TODO: met die tijden gaat het niet goed
+    				// 			"label": data.rows[i][indexStation], 
+    				// 			//"starting_time": 1355752800000, 
+    				// 			"starting_time": Math.round(new Date(data.rows[i][indexStartdatum]).getTime()), 
+    				// 			//"ending_time": 1355759900000}]
+    				// 			"ending_time": Math.round(new Date(data.rows[i][indexEinddatum]).getTime())}]
+    				// 	};
+    				// 	preparedData.push(obj);
+    				// };
+
     				for (var i = 0; i < data.rows.length; i++) {
     					var index;
     					var obj = {
-    						label: '',
+    						label: data.rows[i][indexWerk],
+    						slug: '',
     						times: [{
-    							//TODO: met die tijden gaat het niet goed
-    							"label": data.rows[i][indexStation], 
     							//"starting_time": 1355752800000, 
     							"starting_time": Math.round(new Date(data.rows[i][indexStartdatum]).getTime()), 
     							//"ending_time": 1355759900000}]
