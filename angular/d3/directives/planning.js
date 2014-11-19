@@ -10,15 +10,15 @@ angular.module('wijnemenjemee')
     return {
         restrict: 'E',
         template: '<div></div>',
-        link: function (scope, $element) {
+        link: function (scope, element) {
 
-            var container = d3.select('div', $element);
+            var container = d3.select('div', element);
            
-            //met angular.element($element) heb ik wel
+            //met angular.element(element) heb ik wel
             //de parent() functie beschikbaar, maar niet
             //de width() functie
             //daarom toch met jquery
-            var width = $($element).parent().width();
+            var width = $(element).parent().width();
 
             //omdat de data asynchroon geladen wordt heb ik
             //een watch nodig, 
@@ -47,15 +47,15 @@ angular.module('wijnemenjemee')
     return {
         restrict: 'E',
         template: '<div></div>',
-        link: function (scope, $element) {
+        link: function (scope, element) {
 
-            var container = d3.select('div', $element);
+            var container = d3.select('div', element);
            
-            //met angular.element($element) heb ik wel
+            //met angular.element(element) heb ik wel
             //de parent() functie beschikbaar, maar niet
             //de width() functie
             //daarom toch met jquery
-            var width = $($element).parent().width();
+            var width = $(element).parent().width();
 
             //omdat de data asynchroon geladen wordt heb ik
             //een watch nodig, 
