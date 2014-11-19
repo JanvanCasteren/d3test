@@ -175,7 +175,23 @@
 
           g.selectAll("svg").data(data).enter()
             .append("text")
-            .attr("x", getXTextPos)
+            .attr("class", "timeline-label")
+            .attr("x", function(d, i) {
+              if ((ending - d.starting_time) < (d.starting_time - beginning)) {
+                return getXTextPosLeft(d, i);
+              }
+              else {
+                return getXTextPosRight(d, i);
+              }
+            })
+            .attr("text-anchor", function(d, i) {
+              if ((ending - d.starting_time) < (d.starting_time - beginning)) {
+                return "end";
+              }
+              else {
+                return "start";
+              }
+            })
             .attr("y", getStackTextPosition)
             .text(function(d) {
               return d.label;
@@ -256,9 +272,20 @@
         return margin.left + (d.starting_time - beginning) * scaleFactor;
       }
 
+      //zo was ie
       function getXTextPos(d, i) {
-        return margin.left + (d.starting_time - beginning) * scaleFactor + 5;
+        return margin.left + (d.starting_time - beginning) * scaleFactor + 5 ;
       }
+
+      //jvc: aangepast: label rechts naast stack of links ernaast
+      function getXTextPosRight(d, i) {
+        return margin.left + (d.starting_time - beginning) * scaleFactor + 5 + /*breedte stack:*/ (d.ending_time - d.starting_time) * scaleFactor ;
+      }
+
+      function getXTextPosLeft(d, i) {
+        return margin.left + (d.starting_time - beginning) * scaleFactor -5;
+      }
+      
 
       function setHeight() {
         if (!height && !gParentItem.attr("height")) {

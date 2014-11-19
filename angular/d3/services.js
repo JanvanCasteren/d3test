@@ -31,6 +31,9 @@ angular.module('wijnemenjemee')
 		        		case 'planning':
 		        			return planning(response.data);
 		        			break;
+                        case 'planning2':
+                            return planning2(response.data);
+                            break;
 		        		case 'budget':
 		        			return budget(response.data);
 		        			break;
@@ -85,6 +88,44 @@ angular.module('wijnemenjemee')
 
     				return preparedData;
     			}
+
+
+                function planning2(data) {
+
+                    var expectedColumns = ["Station","Sublocatie","Startdatum","Einddatum","Werk","Type"];
+                    
+                    //check for expected columns
+                    for (var i = expectedColumns.length - 1; i >= 0; i--) {
+                        if (data.columns.indexOf(expectedColumns[i]) === -1) {
+                            //TODO: ik weet nog niet hoe ik error handling
+                            //moet implementeren in Angular
+                            console.error('Missing column ' + expectedColumns[i] + ' in planning data');
+                            return {};
+                        }
+                    }
+
+                    preparedData = [];
+                    var indexWerk = data.columns.indexOf('Werk');
+                    var indexStartdatum = data.columns.indexOf('Startdatum');
+                    var indexEinddatum = data.columns.indexOf('Einddatum');
+
+                    for (var i = 0; i < data.rows.length; i++) {
+                        var index;
+                        var obj = {
+                            label: '',
+                            slug: '',
+                            times: [{
+                                label: data.rows[i][indexWerk],
+                                //"starting_time": 1355752800000, 
+                                starting_time: Math.round(new Date(data.rows[i][indexStartdatum]).getTime()), 
+                                //"ending_time": 1355759900000}]
+                                ending_time: Math.round(new Date(data.rows[i][indexEinddatum]).getTime())}]
+                        };
+                        preparedData.push(obj);
+                    };
+
+                    return preparedData;
+                }
     		}
 		}
 }])
