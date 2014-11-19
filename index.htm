@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="wijnemenjemee">
+<head>
+	<title></title>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="assets/js/d3-timeline/src/d3-timeline.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js"></script>
+	<script src="angular/d3/module.js"></script>
+	<script src="angular/d3/services.js"></script>
+	<script src="angular/d3/controllers.js"></script>
+	<script src="angular/d3/directives/planning.js"></script>
+	<script src="angular/d3/directives/budget.js"></script>
+	<script src="angular/d3/directives/timeline.js"></script>
+	<script src="angular/d3/directives/json.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/d3test.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/timeline.css">
+
+</head>
+<body>
+<div id="left">
+	 
+	<d3-planning data-docid="1es8873reRMt0KE9ig73JdI3NXbwfaa7Ns_mQi256" ng-controller="D3Ctrl"></d3-planning>
+
+</div>
+
+<div id="right">
+	<d3-json data-docid="1es8873reRMt0KE9ig73JdI3NXbwfaa7Ns_mQi256" ng-controller="D3Ctrl"></d3-json>
+</div>
+
+</body>
+</html>
