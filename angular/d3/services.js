@@ -1,14 +1,23 @@
 angular.module('wijnemenjemee')
 
-
-.factory('d3Data', ['$http', '$window', '$log', function ($http, $log)
+/**
+ * d3Data service pulls json data for a table with given docId from google fusion
+ * @param  {[type]} $http
+ * @return {[type]}
+ */
+.factory('d3Data', ['$http', function ($http)
 { 
-	return {    
+	return { 
+		/**
+		 * [getData description]
+		 * @param  {[string]} docId Google Fusion docId
+		 * @param  {[string]} type Type of d3 chart, eg directive d3-planning has type planning
+		 * @return {[type]}
+		 */
 		getData: function (docId, type) 
 			{   
 				var response = $http(
 				{
-					
 			        url: 'https://www.googleapis.com/fusiontables/v2/query?sql=SELECT * FROM ' + docId + 
 			        	'&key=AIzaSyA-kp-PRLXevsoNdo7EK0Eb27Em0BPzY6o',
 			        	method: "GET"
@@ -56,25 +65,9 @@ angular.module('wijnemenjemee')
     				}
 
     				preparedData = [];
-    				var indexType = data.columns.indexOf('Type');
     				var indexWerk = data.columns.indexOf('Werk');
     				var indexStartdatum = data.columns.indexOf('Startdatum');
     				var indexEinddatum = data.columns.indexOf('Einddatum');
-    				//prepare 
-    				// for (var i = 0; i < data.rows.length; i++) {
-    				// 	var index;
-    				// 	var obj = {
-    				// 		label: '',
-    				// 		times: [{
-    				// 			//TODO: met die tijden gaat het niet goed
-    				// 			"label": data.rows[i][indexStation], 
-    				// 			//"starting_time": 1355752800000, 
-    				// 			"starting_time": Math.round(new Date(data.rows[i][indexStartdatum]).getTime()), 
-    				// 			//"ending_time": 1355759900000}]
-    				// 			"ending_time": Math.round(new Date(data.rows[i][indexEinddatum]).getTime())}]
-    				// 	};
-    				// 	preparedData.push(obj);
-    				// };
 
     				for (var i = 0; i < data.rows.length; i++) {
     					var index;
@@ -89,7 +82,6 @@ angular.module('wijnemenjemee')
     					};
     					preparedData.push(obj);
     				};
-
 
     				return preparedData;
     			}

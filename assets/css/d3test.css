@@ -1,3 +1,4 @@
+/*layout*/
 #left {
 	float:left;
 	width:45%;
@@ -8,4 +9,20 @@
 	float:right;
 	width:49%;
 	padding:1em;
+}
+
+/*styles for d3-timeline*/
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+.axis text {
+  font-family: sans-serif;
+  font-size: 10px;
+}
+.timeline-label {
+  font-family: sans-serif;
+  font-size: 12px;
 }

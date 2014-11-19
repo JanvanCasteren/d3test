@@ -1,6 +1,6 @@
-angular.module('wijnemenjemee', []) //dit lukt niet
+angular.module('wijnemenjemee', []) 
 
-//onderstaande geeft foutmelding niet
+//onderstaande geeft foutmelding 
 // .config(["$sceDelegateProvider", function($sceDelegateProvider) 
 // {
 //     $sceDelegateProvider.resourceUrlWhitelist([
